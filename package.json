@@ -20,16 +20,12 @@
 				"title": "Add Note"
 			},
 			{
-				"command": "extension.editNote",
-				"title": "Edit Note"
+				"command": "extension.viewEditNote",
+				"title": "View/Edit Note"
 			},
 			{
 				"command": "extension.deleteNote",
 				"title": "Delete Note"
-			},
-			{
-				"command": "extension.showNote",
-				"title": "Show Note For this Tab"
 			}
 		]
 	},
