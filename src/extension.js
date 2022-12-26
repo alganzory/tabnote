@@ -1,5 +1,11 @@
 const vscode = require("vscode");
-const path = require("path");
+const {
+	getNotes,
+	setNotes,
+	deleteNote,
+	addNote,
+	editNote,
+} = require("./notesOperations");
 
 const statusBarItem = vscode.window.createStatusBarItem();
 
@@ -16,14 +22,13 @@ function activate(context) {
 
 	// upon starting VS Code, check if there is a note for the active tab, and display it in the status bar
 	if (vscode.window.activeTextEditor) {
-		const notes = context.workspaceState.get("notes") || {};
+		const notes = getNotes(context);
 		if (vscode.window.activeTextEditor.document.fileName in notes) {
 			updateStatusBar(
 				notes[vscode.window.activeTextEditor.document.fileName]
 			);
 		}
-	}
-	else {
+	} else {
 		updateStatusBar();
 	}
 	// Add a command that allows the user to add a note to the active tab
@@ -39,16 +44,14 @@ function activate(context) {
 
 			// Show an input box to get the note from the user
 			vscode.window.showInputBox().then(function (note) {
-				// Save the note in a JSON file in the workspace
-				let notes = context.workspaceState.get("notes") || {};
-				// update the notes object with the new note
-				notes[vscode.window.activeTextEditor.document.fileName] = note;
-				context.workspaceState.update("notes", notes);
+				// add the note to the notes object
+				addNote(
+					context,
+					vscode.window.activeTextEditor.document.fileName,
+					note
+				);
 
-				// Update the status bar with the note if the tab corresponds to the active tab
-				if (vscode.window.activeTextEditor.document.fileName in notes) {
-					updateStatusBar(note);
-				}
+				updateStatusBar(note);
 			});
 		})
 	);
@@ -65,7 +68,7 @@ function activate(context) {
 			}
 
 			// read the notes
-			let notes = context.workspaceState.get("notes") || {};
+			let notes = getNotes(context);
 			let existingNote =
 				notes[vscode.window.activeTextEditor.document.fileName];
 			// Show the full note in an input box
@@ -86,9 +89,11 @@ function activate(context) {
 						return;
 					}
 					// update the notes object with the new note
-					notes[vscode.window.activeTextEditor.document.fileName] =
-						note;
-					context.workspaceState.update("notes", notes);
+					editNote(
+						context,
+						vscode.window.activeTextEditor.document.fileName,
+						note
+					);
 
 					// Update the status bar with the new note
 					updateStatusBar(note);
@@ -108,15 +113,12 @@ function activate(context) {
 			}
 
 			// Delete the note for the active tab
-			let notes = context.workspaceState.get("notes") || {};
-			delete notes[vscode.window.activeTextEditor.document.fileName];
-			context.workspaceState.update("notes", notes);
+			deleteNote[vscode.window.activeTextEditor.document.fileName];
 
 			// Update the status bar with the new note
 			updateStatusBar();
 		})
 	);
-	
 
 	// upon opening a file, check if there is a note for it, and display it in the status bar
 	vscode.window.onDidChangeActiveTextEditor(function (editor) {
@@ -124,8 +126,8 @@ function activate(context) {
 		if (!editor) {
 			updateStatusBar();
 			return;
-		};
-		const notes = context.workspaceState.get("notes") || {};
+		}
+		const notes = getNotes(context);
 		if (editor.document.fileName in notes) {
 			updateStatusBar(notes[editor.document.fileName]);
 		} else {
