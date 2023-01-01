@@ -2,7 +2,7 @@ const vscode = require("vscode");
 const { getNotes, editNote } = require("../utils/notesOperations");
 const { updateStatusBar } = require("../utils/statusBar");
 
-module.exports = function (context) {
+module.exports = async function (context) {
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
 		vscode.window.showErrorMessage(
@@ -26,13 +26,13 @@ module.exports = function (context) {
 			placeHolder: "Enter a note for this tab",
 			prompt: "View/Edit note for this tab",
 		})
-		.then(function (note) {
+		.then(async function (note) {
 			// If the user clicked "Cancel" or entered no new note, do nothing
 			if (note === undefined || note === existingNote) {
 				return;
 			}
 			// update the notes object with the new note
-			editNote(
+			await editNote(
 				context,
 				vscode.window.activeTextEditor.document.fileName,
 				note

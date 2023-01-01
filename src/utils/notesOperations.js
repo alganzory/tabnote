@@ -4,26 +4,26 @@ function getNotes(context) {
 	return context.workspaceState.get(NOTES_KEY, {});
 }
 
-function setNotes(context, notes) {
+async function setNotes(context, notes) {
 	return context.workspaceState.update(NOTES_KEY, notes);
 }
 
-function deleteNote(context, fileName) {
+async function deleteNote(context, fileName) {
 	const notes = getNotes(context);
 	delete notes[fileName];
-	setNotes(context, notes);
+	await setNotes(context, notes);
 }
 
-function addNote(context, fileName, note) {
+async function addNote(context, fileName, note) {
 	const notes = getNotes(context);
 	notes[fileName] = note;
-	setNotes(context, notes);
+	await setNotes(context, notes);
 }
 
-function editNote(context, fileName, note) {
+async function editNote(context, fileName, note) {
 	const notes = getNotes(context);
 	notes[fileName] = note;
-	setNotes(context, notes);
+	await setNotes(context, notes);
 }
 
 module.exports = {
