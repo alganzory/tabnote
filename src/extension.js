@@ -3,6 +3,7 @@ const vscode = require("vscode");
 const getRegisteredCommands = require("./commands");
 const onTabChange = require("./handlers/onTabChange");
 const onStart = require("./handlers/onStart");
+const onRenameFile = require("./handlers/onRenameFile");
 
 // This function is called when the extension is activated
 function activate(context) {
@@ -15,7 +16,12 @@ function activate(context) {
 	context.subscriptions.push(...getRegisteredCommands(context));
 
 	// upon opening a file, check if there is a note for it, and display it in the status bar
-	vscode.window.onDidChangeActiveTextEditor((editor) => onTabChange(editor, context));
+	vscode.window.onDidChangeActiveTextEditor((editor) =>
+		onTabChange(editor, context)
+	);
+
+	// upon renaming a file, check if there is a note for it, and display it in the status bar
+	vscode.workspace.onDidRenameFiles(event => onRenameFile(event, context));
 }
 
 // This function is called when the extension is deactivated
