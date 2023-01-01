@@ -10,6 +10,9 @@ module.exports = function (context) {
 				notes[vscode.window.activeTextEditor.document.fileName]
 			);
 		}
+		else {
+			updateStatusBar();
+		}
 	} else {
 		updateStatusBar();
 	}
