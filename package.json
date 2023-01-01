@@ -1,7 +1,7 @@
 {
 	"name": "tabnote",
 	"displayName": "TabNote",
-	"description": "Leave a note on open tabs to help remember why the heck you opened them in the first place.",
+	"description": "Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.74.0"
