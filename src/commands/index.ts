@@ -1,9 +1,11 @@
-const vscode = require("vscode");
-const addNoteCommand = require("./addNote");
-const viewEditNoteCommand = require("./viewEditNote");
-const deleteNoteCommand = require("./deleteNote");
+import * as vscode from "vscode";
+import addNoteCommand from "./addNote";
+import viewEditNoteCommand from "./viewEditNote";
+import deleteNoteCommand from "./deleteNote";
 
-module.exports = function getRegisteredCommands(context) {
+export default function getRegisteredCommands(
+	context: vscode.ExtensionContext
+) {
 	return [
 		vscode.commands.registerCommand(
 			"extension.addNote",
@@ -15,7 +17,7 @@ module.exports = function getRegisteredCommands(context) {
 		),
 		vscode.commands.registerCommand(
 			"extension.deleteNote",
-			deleteNoteCommand
+			async () => await deleteNoteCommand(context)
 		),
 	];
-};
+}

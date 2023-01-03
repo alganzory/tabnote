@@ -1,10 +1,14 @@
-const { getNotes, setNotes } = require("../utils/notesOperations");
+import * as vscode from "vscode";
+import { getNotes, setNotes } from "../utils/notesOperations";
 
-module.exports = async function (event, context) {
+export default async function (
+	event: vscode.FileRenameEvent,
+	context: vscode.ExtensionContext
+) {
 	event?.files.forEach(async (file) => {
-		const oldFileName = file.oldUri;
-		const newFileName = file.newUri;
-
+		const oldFileName = file.oldUri.fsPath;
+		const newFileName = file.newUri.fsPath;
+		
 		// get the notes
 		const notes = getNotes(context);
 
@@ -18,4 +22,4 @@ module.exports = async function (event, context) {
 			await setNotes(context, notes);
 		}
 	});
-};
+}

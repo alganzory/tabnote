@@ -1,8 +1,8 @@
-const vscode = require("vscode");
-const { deleteNote } = require("../utils/notesOperations");
-const { updateStatusBar } = require("../utils/statusBar");
+import * as vscode from "vscode";
+import { deleteNote } from "../utils/notesOperations";
+import updateStatusBar from "../utils/statusBar";
 
-module.exports = async function () {
+export default async function (context: vscode.ExtensionContext) {
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
 		vscode.window.showErrorMessage(
@@ -12,8 +12,8 @@ module.exports = async function () {
 	}
 
 	// Delete the note for the active tab
-	await deleteNote [vscode.window.activeTextEditor.document.fileName];
+	await deleteNote(context, vscode.window.activeTextEditor.document.fileName);
 
 	// Update the status bar with the new note
 	updateStatusBar();
-};
+}
