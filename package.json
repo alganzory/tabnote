@@ -12,7 +12,7 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./src/extension.ts",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
