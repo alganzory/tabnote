@@ -1,7 +1,11 @@
-const { getNotes } = require("../utils/notesOperations");
-const { updateStatusBar } = require("../utils/statusBar");
+import * as vscode from "vscode";
+import { getNotes } from "../utils/notesOperations";
+import updateStatusBar from "../utils/statusBar";
 
-module.exports = function (editor, context) {
+export default function (
+	editor: vscode.TextEditor | undefined,
+	context: vscode.ExtensionContext
+) {
 	console.log("Active editor changed");
 	if (!editor) {
 		updateStatusBar();
@@ -13,4 +17,4 @@ module.exports = function (editor, context) {
 	} else {
 		updateStatusBar();
 	}
-};
+}

@@ -1,8 +1,8 @@
-const vscode = require("vscode");
-const { addNote } = require("../utils/notesOperations");
-const { updateStatusBar } = require("../utils/statusBar");
+import * as vscode from "vscode";
+import { addNote } from "../utils/notesOperations";
+import updateStatusBar from "../utils/statusBar";
 
-module.exports = async function (context) {
+export default async function (context: vscode.ExtensionContext) {
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
 		vscode.window.showErrorMessage(
@@ -16,8 +16,8 @@ module.exports = async function (context) {
 		// add the note to the notes object
 		await addNote(
 			context,
-			vscode.window.activeTextEditor.document.fileName,
-			note
+			vscode.window.activeTextEditor!.document.fileName,
+			note!
 		);
 
 		updateStatusBar(note);

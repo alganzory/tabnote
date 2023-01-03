@@ -1,14 +1,10 @@
-const vscode = require("vscode");
+import * as vscode from "vscode";
 
 const statusBarItem = vscode.window.createStatusBarItem();
 
-function updateStatusBar(note = "") {
+export default function updateStatusBar(note = ""): void {
 	const displayNote = note.length > 10 ? note.substring(0, 10) + "..." : note;
 	statusBarItem.command = "extension.viewEditNote";
 	statusBarItem.text = `**TabNote:** ${displayNote}`;
 	statusBarItem.show();
 }
-
-module.exports = {
-	updateStatusBar,
-};
