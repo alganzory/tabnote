@@ -17,17 +17,60 @@
 		"commands": [
 			{
 				"command": "extension.addNote",
-				"title": "Add Note"
+				"title": "Add Note",
+				"icon": "media/icons/add.svg"
 			},
 			{
 				"command": "extension.viewEditNote",
-				"title": "View/Edit Note"
+				"title": "View/Edit Note",
+				"icon": "media/icons/edit.svg"
 			},
 			{
 				"command": "extension.deleteNote",
-				"title": "Delete Note"
+				"title": "Delete Note",
+				"icon": "media/icons/delete.svg"
+			},
+			{
+				"command": "extension.refreshNotes",
+				"title": "Refresh",
+				"icon": "media/icons/refresh.svg"
 			}
-		]
+		],
+		"views": {
+			"notesTreeContainer": [
+				{
+					"id": "notesTreeView",
+					"name": "Notes",
+					"icon": "media/icons/activity-bar-icon.svg",
+					"contextualTitle": "Notes"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "notesTreeContainer",
+					"title": "TabNote",
+					"icon": "media/icons/activity-bar-icon.svg"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "extension.refreshNotes",
+					"when": "view == notesTreeView",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "extension.viewEditNote",
+					"group": "inline",
+					"when": "view == notesTreeView"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
