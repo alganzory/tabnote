@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	// Push all the commands to the context
-	context.subscriptions.push(...getRegisteredCommands(context));
+	context.subscriptions.push(...getRegisteredCommands(context, () => notesTreeProvider.refresh()));
 
 	// upon opening a file, check if there is a note for it, and display it in the status bar
 	vscode.window.onDidChangeActiveTextEditor((editor) =>
