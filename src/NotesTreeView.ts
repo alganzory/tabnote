@@ -4,32 +4,30 @@ import { NoteItem } from "./NoteItem";
 
 export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	private _context: vscode.ExtensionContext;
-	private _treeView: vscode.TreeView<vscode.TreeItem>;
 
 	constructor(context: vscode.ExtensionContext) {
 		this._context = context;
-
-		this._treeView = vscode.window.createTreeView("notesTreeView", {
-			treeDataProvider: this,
-		});
 	}
 
 	getTreeItem(element: NoteItem): vscode.TreeItem {
 		return element;
 	}
 
-	async getChildren(element?: vscode.TreeItem): Promise<vscode.TreeItem[]> {
+	getChildren(element?: vscode.TreeItem): Thenable<NoteItem[]> {
 		// Return the list of notes as the children of the root node
 		if (!element) {
 			const notes = getNotes(this._context);
-			return Object.keys(notes).map((fileName) => {
-				const note = notes[fileName];
-				return new NoteItem(
-					note,
-					fileName,
-					this.getShorterFileName(fileName)
-				);
-			});
+			return Promise.resolve(
+				Object.keys(notes).map((fileName) => {
+					const note = notes[fileName];
+					const newNoteItem = new NoteItem(
+						note,
+						fileName,
+						this.getShorterFileName(fileName)
+					);
+					return newNoteItem;
+				})
+			);
 		}
 		return Promise.resolve([]);
 	}
@@ -37,19 +35,18 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	getShorterFileName(fileName: string): string {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 		const workspaceFolderPath = workspaceFolder?.uri.fsPath;
-		const relativePath = fileName.replace(workspaceFolderPath!, "..");
+		const relativePath = fileName.replace(workspaceFolderPath!, "");
 		return relativePath;
 	}
 
 	private _onDidChangeTreeData: vscode.EventEmitter<
 		NoteItem | undefined | null | void
 	> = new vscode.EventEmitter<NoteItem | undefined | null | void>();
-	readonly onDidChangeTreeData: vscode.Event<NoteItem | undefined | null | void> =
-		this._onDidChangeTreeData.event;
+	readonly onDidChangeTreeData: vscode.Event<
+		NoteItem | undefined | null | void
+	> = this._onDidChangeTreeData.event;
 
 	refresh(): void {
 		this._onDidChangeTreeData.fire();
 	}
 }
-
-
