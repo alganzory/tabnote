@@ -21,7 +21,7 @@
 				"icon": "media/icons/add.svg"
 			},
 			{
-				"command": "extension.viewEditNote",
+				"command": "extension.viewEditNoteItemCommand",
 				"title": "View/Edit Note",
 				"icon": "media/icons/edit.svg",
 				"enablement": "view == notesTreeView"
@@ -32,7 +32,7 @@
 				"icon": "media/icons/edit.svg"
 			},
 			{
-				"command": "extension.deleteNote",
+				"command": "extension.deleteNoteItemCommand",
 				"title": "Delete Note",
 				"icon": "media/icons/delete.svg",
 				"enablement": "view == notesTreeView"
@@ -77,11 +77,11 @@
 			],
 			"view/item/context": [
 				{
-					"command": "extension.viewEditNote",
+					"command": "extension.viewEditNoteItemCommand",
 					"group": "inline"
 				},
 				{
-					"command": "extension.deleteNote",
+					"command": "extension.deleteNoteItemCommand",
 					"group": "inline"
 				}
 			]

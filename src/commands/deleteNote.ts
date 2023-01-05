@@ -15,22 +15,22 @@ export async function deleteCurrentNoteCommand(
 		return;
 	}
 
-	await deleteCommandActions(
+	await deleteCommandHelper(
 		context,
 		vscode.window.activeTextEditor!.document.fileName,
 		refreshView
 	);
 }
 
-export async function deleteNoteCommand(
+export async function deleteNoteItemCommand(
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
 	noteItem: NoteItem
 ) {
-	await deleteCommandActions(context, noteItem.fileName, refreshView);
+	await deleteCommandHelper(context, noteItem.fileName, refreshView);
 }
 
-async function deleteCommandActions(
+async function deleteCommandHelper(
 	context: vscode.ExtensionContext,
 	fileName: string,
 	refreshView: () => void

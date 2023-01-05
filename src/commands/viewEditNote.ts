@@ -23,7 +23,7 @@ export async function viewEditCurrentNote(
 		return;
 	}
 
-	await viewEditNoteMenu(
+	await viewEditNoteHelper(
 		existingNote,
 		context,
 		refreshView,
@@ -31,7 +31,7 @@ export async function viewEditCurrentNote(
 	);
 }
 
-export async function videwEditNote(
+export async function videwEditNoteItemCommand(
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
 	noteItem: NoteItem
@@ -44,7 +44,7 @@ export async function videwEditNote(
 		return;
 	}
 
-	await viewEditNoteMenu(
+	await viewEditNoteHelper(
 		existingNote,
 		context,
 		refreshView,
@@ -52,7 +52,7 @@ export async function videwEditNote(
 	);
 }
 
-async function viewEditNoteMenu(
+async function viewEditNoteHelper(
 	existingNote = "",
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
