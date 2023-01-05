@@ -17,7 +17,7 @@ export async function deleteCurrentNoteCommand(
 
 	await deleteCommandHelper(
 		context,
-		vscode.window.activeTextEditor!.document.fileName,
+		vscode.window.activeTextEditor?.document.fileName,
 		refreshView
 	);
 }
@@ -39,7 +39,7 @@ async function deleteCommandHelper(
 	await deleteNote(context, fileName);
 
 	// Update the status bar with the new note if it's the active tab
-	if (vscode.window.activeTextEditor!.document.fileName === fileName) {
+	if (vscode.window.activeTextEditor?.document.fileName === fileName) {
 		updateStatusBar();
 	}
 
