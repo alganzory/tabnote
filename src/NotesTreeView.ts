@@ -35,7 +35,7 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	getShorterFileName(fileName: string): string {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 		const workspaceFolderPath = workspaceFolder?.uri.fsPath;
-		const relativePath = fileName.replace(workspaceFolderPath!, "");
+		const relativePath = fileName.replace(workspaceFolderPath!, "..");
 		return relativePath;
 	}
 
