@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { getNotes } from "./utils/notesOperations";
+import { NoteItem } from "./NoteItem";
 
 export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	private _context: vscode.ExtensionContext;
@@ -13,7 +14,7 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 		});
 	}
 
-	getTreeItem(element: Note): vscode.TreeItem {
+	getTreeItem(element: NoteItem): vscode.TreeItem {
 		return element;
 	}
 
@@ -23,7 +24,7 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 			const notes = getNotes(this._context);
 			return Object.keys(notes).map((fileName) => {
 				const note = notes[fileName];
-				return new Note(
+				return new NoteItem(
 					note,
 					fileName,
 					this.getShorterFileName(fileName)
@@ -41,9 +42,9 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	}
 
 	private _onDidChangeTreeData: vscode.EventEmitter<
-		Note | undefined | null | void
-	> = new vscode.EventEmitter<Note | undefined | null | void>();
-	readonly onDidChangeTreeData: vscode.Event<Note | undefined | null | void> =
+		NoteItem | undefined | null | void
+	> = new vscode.EventEmitter<NoteItem | undefined | null | void>();
+	readonly onDidChangeTreeData: vscode.Event<NoteItem | undefined | null | void> =
 		this._onDidChangeTreeData.event;
 
 	refresh(): void {
@@ -51,16 +52,4 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 	}
 }
 
-class Note extends vscode.TreeItem {
-	constructor(
-		public readonly note: string,
-		private fileName: string,
-		private shorterFileName: string,
-		public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode
-			.TreeItemCollapsibleState.None
-	) {
-		super(shorterFileName, collapsibleState);
-		this.tooltip = `${this.fileName}`;
-		this.description = `${this.note}`;
-	}
-}
+
