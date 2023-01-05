@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import addNoteCommand from "./addNote";
 import { viewEditCurrentNote, videwEditNote } from "./viewEditNote";
-import deleteNoteCommand from "./deleteNote";
+import { deleteCurrentNoteCommand, deleteNoteCommand } from "./deleteNote";
 import { NoteItem } from "../NoteItem";
 
 export default function getRegisteredCommands(
@@ -23,8 +23,13 @@ export default function getRegisteredCommands(
 				await videwEditNote(context, refreshView, noteItem)
 		),
 		vscode.commands.registerCommand(
+			"extension.deleteCurrentNote",
+			async () => await deleteCurrentNoteCommand(context, refreshView)
+		),
+		vscode.commands.registerCommand(
 			"extension.deleteNote",
-			async () => await deleteNoteCommand(context, refreshView)
+			async (noteItem: NoteItem) =>
+				await deleteNoteCommand(context, refreshView, noteItem)
 		),
 	];
 }

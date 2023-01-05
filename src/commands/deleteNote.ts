@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 import { deleteNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
+import { NoteItem } from "../NoteItem";
 
-export default async function (
+export async function deleteCurrentNoteCommand(
 	context: vscode.ExtensionContext,
 	refreshView: () => void
 ) {
@@ -14,11 +15,33 @@ export default async function (
 		return;
 	}
 
-	// Delete the note for the active tab
-	await deleteNote(context, vscode.window.activeTextEditor.document.fileName);
+	await deleteCommandActions(
+		context,
+		vscode.window.activeTextEditor!.document.fileName,
+		refreshView
+	);
+}
 
-	// Update the status bar with the new note
-	updateStatusBar();
+export async function deleteNoteCommand(
+	context: vscode.ExtensionContext,
+	refreshView: () => void,
+	noteItem: NoteItem
+) {
+	await deleteCommandActions(context, noteItem.fileName, refreshView);
+}
+
+async function deleteCommandActions(
+	context: vscode.ExtensionContext,
+	fileName: string,
+	refreshView: () => void
+) {
+	// Delete the note for the active tab
+	await deleteNote(context, fileName);
+
+	// Update the status bar with the new note if it's the active tab
+	if (vscode.window.activeTextEditor!.document.fileName === fileName) {
+		updateStatusBar();
+	}
 
 	// Refresh the view
 	refreshView();

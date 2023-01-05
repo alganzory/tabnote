@@ -34,6 +34,12 @@
 			{
 				"command": "extension.deleteNote",
 				"title": "Delete Note",
+				"icon": "media/icons/delete.svg",
+				"enablement": "view == notesTreeView"
+			},
+			{
+				"command": "extension.deleteCurrentNote",
+				"title": "Delete this Note",
 				"icon": "media/icons/delete.svg"
 			},
 			{
@@ -72,6 +78,10 @@
 			"view/item/context": [
 				{
 					"command": "extension.viewEditNote",
+					"group": "inline"
+				},
+				{
+					"command": "extension.deleteNote",
 					"group": "inline"
 				}
 			]
