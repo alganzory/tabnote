@@ -6,7 +6,6 @@ export default function (
 	editor: vscode.TextEditor | undefined,
 	context: vscode.ExtensionContext
 ) {
-	console.log("Active editor changed");
 	if (!editor) {
 		updateStatusBar();
 		return;
