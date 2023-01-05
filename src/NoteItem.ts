@@ -11,4 +11,11 @@ export class NoteItem extends vscode.TreeItem {
 		this.tooltip = `${this.fileName}`;
 		this.description = `${this.note}`;
 	}
+
+	command = {
+		id: "vscode.open",
+		title: "Open Tab",
+		arguments: [vscode.Uri.file(this.fileName), { preview: true }],
+		command: "vscode.open",
+	};
 }
