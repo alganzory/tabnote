@@ -31,5 +31,7 @@ export default function getRegisteredCommands(
 			async (noteItem: NoteItem) =>
 				await deleteNoteItemCommand(context, refreshView, noteItem)
 		),
+
+		vscode.commands.registerCommand("extension.refreshNotes", refreshView),
 	];
 }

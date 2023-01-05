@@ -44,7 +44,7 @@
 			},
 			{
 				"command": "extension.refreshNotes",
-				"title": "Refresh",
+				"title": "Refresh Notes",
 				"icon": "media/icons/refresh.svg"
 			}
 		],

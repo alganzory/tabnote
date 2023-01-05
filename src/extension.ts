@@ -18,10 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
 	const notesTreeProvider = new NotesTreeView(context);
 	vscode.window.registerTreeDataProvider("notesTreeView", notesTreeProvider);
 
-	vscode.commands.registerCommand("extension.refreshNotes", () =>
-		notesTreeProvider.refresh()
-	);
-
 	// Push all the commands to the context
 	context.subscriptions.push(...getRegisteredCommands(context, () => notesTreeProvider.refresh()));
 
