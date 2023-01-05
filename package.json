@@ -23,6 +23,12 @@
 			{
 				"command": "extension.viewEditNote",
 				"title": "View/Edit Note",
+				"icon": "media/icons/edit.svg",
+				"enablement": "view == notesTreeView"
+			},
+			{
+				"command": "extension.viewEditCurrentNote",
+				"title": "View/Edit this Note",
 				"icon": "media/icons/edit.svg"
 			},
 			{
@@ -66,8 +72,7 @@
 			"view/item/context": [
 				{
 					"command": "extension.viewEditNote",
-					"group": "inline",
-					"when": "view == notesTreeView"
+					"group": "inline"
 				}
 			]
 		}

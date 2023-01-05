@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 import { getNotes, editNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
+import { NoteItem } from "../NoteItem";
 
-export default async function (
+export async function viewEditCurrentNote(
 	context: vscode.ExtensionContext,
 	refreshView: () => void
 ) {
@@ -17,7 +18,46 @@ export default async function (
 	// read the notes
 	let notes = getNotes(context);
 	let existingNote = notes[vscode.window.activeTextEditor.document.fileName];
-	// Show the full note in an input box
+
+	if (!existingNote || existingNote === "") {
+		return;
+	}
+
+	await viewEditNoteMenu(
+		existingNote,
+		context,
+		refreshView,
+		vscode.window.activeTextEditor.document.fileName
+	);
+}
+
+export async function videwEditNote(
+	context: vscode.ExtensionContext,
+	refreshView: () => void,
+	noteItem: NoteItem
+) {
+	// read the notes
+	let notes = getNotes(context);
+	let existingNote = notes[noteItem.fileName];
+
+	if (!existingNote || existingNote === "") {
+		return;
+	}
+
+	await viewEditNoteMenu(
+		existingNote,
+		context,
+		refreshView,
+		noteItem.fileName
+	);
+}
+
+async function viewEditNoteMenu(
+	existingNote = "",
+	context: vscode.ExtensionContext,
+	refreshView: () => void,
+	fileName: string
+) {
 	vscode.window
 		.showInputBox({
 			value: existingNote || "",
@@ -35,14 +75,17 @@ export default async function (
 				return;
 			}
 			// update the notes object with the new note
-			await editNote(
-				context,
-				vscode.window.activeTextEditor!.document.fileName,
-				note
-			);
+			await editNote(context, fileName, note);
 
-			// Update the status bar with the new note
-			updateStatusBar(note);
+			// Update the status bar with the new note if it's the active tab
+			if (vscode.window.activeTextEditor) {
+				if (
+					vscode.window.activeTextEditor.document.fileName ===
+					fileName
+				) {
+					updateStatusBar(note);
+				}
+			}
 
 			// Refresh the view
 			refreshView();
