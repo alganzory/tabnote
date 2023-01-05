@@ -48,7 +48,9 @@ export async function videwEditNoteItemCommand(
 		existingNote,
 		context,
 		refreshView,
-		noteItem.fileName
+		noteItem.fileName,
+		"Edit note for" + noteItem.shorterFileName,
+		"View/Edit note for " + noteItem.shorterFileName
 	);
 }
 
@@ -56,7 +58,9 @@ async function viewEditNoteHelper(
 	existingNote = "",
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
-	fileName: string
+	fileName: string,
+	placeHolder: string = "Enter a note for this tab",
+	prompt: string = "View/Edit note for this tab"
 ) {
 	vscode.window
 		.showInputBox({
@@ -66,8 +70,8 @@ async function viewEditNoteHelper(
 				existingNote ? existingNote.length : 0,
 				existingNote ? existingNote.length : 0,
 			],
-			placeHolder: "Enter a note for this tab",
-			prompt: "View/Edit note for this tab",
+			placeHolder: placeHolder,
+			prompt: prompt,
 		})
 		.then(async function (note) {
 			// If the user clicked "Cancel" or entered no new note, do nothing
