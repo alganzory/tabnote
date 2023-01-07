@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { getNotes } from "./utils/notesOperations";
 import { NoteItem } from "./NoteItem";
 
-export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
+export class NotesTreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 	private _context: vscode.ExtensionContext;
 
 	constructor(context: vscode.ExtensionContext) {
@@ -32,7 +32,7 @@ export class NotesTreeView implements vscode.TreeDataProvider<vscode.TreeItem> {
 		return Promise.resolve([]);
 	}
 
-	getShorterFileName(fileName: string): string {
+	private getShorterFileName(fileName: string): string {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 		const workspaceFolderPath = workspaceFolder?.uri.fsPath;
 		const relativePath = fileName.replace(workspaceFolderPath!, "..");
