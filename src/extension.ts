@@ -4,6 +4,7 @@ import onTabChange from "./handlers/onTabChange";
 import onStart from "./handlers/onStart";
 import onRenameFile from "./handlers/onRenameFile";
 import { NotesTreeDataProvider } from "./NotesTreeDataProvider";
+import { NOTES_TREE_VIEW_ID } from "./constants";
 
 export function activate(context: vscode.ExtensionContext) {
 	// upon starting VS Code, check if there is a note for the active tab, and display it in the status bar
@@ -11,7 +12,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Create the tree view
 	const notesTreeProvider = new NotesTreeDataProvider(context);
-	vscode.window.registerTreeDataProvider("notesTreeView", notesTreeProvider);
+	vscode.window.registerTreeDataProvider(
+		NOTES_TREE_VIEW_ID,
+		notesTreeProvider
+	);
 
 	// Push all the commands to the context
 	context.subscriptions.push(

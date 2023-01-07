@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { getNotes, editNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
 import { NoteItem } from "../NoteItem";
+import { VIEW_EDIT_CURRENT_NOTE_COMMAND_ERROR_MESSAGE, VIEW_EDIT_NOTE_INPUT_DEFAULT_PLACEHOLDER, VIEW_EDIT_NOTE_INPUT_DEFAULT_PROMPT, VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE, VIEW_EDIT_NOTE_ITEM_INPUT_PLACEHOLDER, VIEW_EDIT_NOTE_ITEM_INPUT_PROMPT } from "../constants";
 
 export async function viewEditCurrentNote(
 	context: vscode.ExtensionContext,
@@ -10,7 +11,7 @@ export async function viewEditCurrentNote(
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
 		vscode.window.showErrorMessage(
-			"Cannot view/edit a note. No active text editor found."
+			VIEW_EDIT_CURRENT_NOTE_COMMAND_ERROR_MESSAGE
 		);
 		return;
 	}
@@ -31,7 +32,7 @@ export async function viewEditCurrentNote(
 	);
 }
 
-export async function videwEditNoteItemCommand(
+export async function viewEditNoteItemCommand(
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
 	noteItem: NoteItem
@@ -49,8 +50,8 @@ export async function videwEditNoteItemCommand(
 		context,
 		refreshView,
 		noteItem.fileName,
-		"Edit note for" + noteItem.shorterFileName,
-		"View/Edit note for " + noteItem.shorterFileName
+		VIEW_EDIT_NOTE_ITEM_INPUT_PLACEHOLDER(noteItem.shorterFileName),
+		VIEW_EDIT_NOTE_ITEM_INPUT_PROMPT(noteItem.shorterFileName)
 	);
 }
 
@@ -59,12 +60,12 @@ async function viewEditNoteHelper(
 	context: vscode.ExtensionContext,
 	refreshView: () => void,
 	fileName: string,
-	placeHolder: string = "Enter a note for this tab",
-	prompt: string = "View/Edit note for this tab"
+	placeHolder: string = VIEW_EDIT_NOTE_INPUT_DEFAULT_PLACEHOLDER,
+	prompt: string = VIEW_EDIT_NOTE_INPUT_DEFAULT_PROMPT
 ) {
 	vscode.window
 		.showInputBox({
-			value: existingNote || "",
+			value: existingNote || VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE,
 			// move the cursor to the end of the note
 			valueSelection: [
 				existingNote ? existingNote.length : 0,

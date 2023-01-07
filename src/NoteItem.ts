@@ -1,5 +1,6 @@
 import path = require("path");
 import * as vscode from "vscode";
+import { NOTE_ITEM_COMMAND, NOTE_ITEM_DESCRIPTION, NOTE_ITEM_ICON as NOTE_ITEM_ICON_PATH, NOTE_ITEM_TOOLTIP } from "./constants";
 export class NoteItem extends vscode.TreeItem {
 	constructor(
 		public readonly note: string,
@@ -9,18 +10,11 @@ export class NoteItem extends vscode.TreeItem {
 			.TreeItemCollapsibleState.None
 	) {
 		super(shorterFileName, collapsibleState);
-		this.tooltip = `${this.fileName}\n=====\n${this.note}`;
-		this.description = `${this.note}`;
+		this.tooltip = NOTE_ITEM_TOOLTIP(fileName, note);
+		this.description = NOTE_ITEM_DESCRIPTION(note);
 	}
 
-	command = {
-		id: "vscode.open",
-		title: "Open Tab",
-		arguments: [vscode.Uri.file(this.fileName), { preview: true }],
-		command: "vscode.open",
-	};
+	command = NOTE_ITEM_COMMAND(this.fileName);
 
-	iconPath = vscode.Uri.file(
-		path.join(__filename, "..", "..", "media", "icons", "tab.svg")
-	);
+	iconPath = NOTE_ITEM_ICON_PATH;
 }

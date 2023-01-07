@@ -1,8 +1,11 @@
 import * as vscode from "vscode";
 import { getNotes } from "./utils/notesOperations";
 import { NoteItem } from "./NoteItem";
+import { NOTE_ITEM_SHORTER_NAME_PREFIX } from "./constants";
 
-export class NotesTreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
+export class NotesTreeDataProvider
+	implements vscode.TreeDataProvider<vscode.TreeItem>
+{
 	private _context: vscode.ExtensionContext;
 
 	constructor(context: vscode.ExtensionContext) {
@@ -35,7 +38,10 @@ export class NotesTreeDataProvider implements vscode.TreeDataProvider<vscode.Tre
 	private getShorterFileName(fileName: string): string {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 		const workspaceFolderPath = workspaceFolder?.uri.fsPath;
-		const relativePath = fileName.replace(workspaceFolderPath!, "..");
+		const relativePath = fileName.replace(
+			workspaceFolderPath!,
+			NOTE_ITEM_SHORTER_NAME_PREFIX
+		);
 		return relativePath;
 	}
 

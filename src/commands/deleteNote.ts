@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { deleteNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
 import { NoteItem } from "../NoteItem";
+import { DELETE_CURRENT_NOTE_COMMAND_ERROR_MESSAGE } from "../constants";
 
 export async function deleteCurrentNoteCommand(
 	context: vscode.ExtensionContext,
@@ -9,9 +10,7 @@ export async function deleteCurrentNoteCommand(
 ) {
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
-		vscode.window.showErrorMessage(
-			"Cannot delete a note. No active text editor found."
-		);
+		vscode.window.showErrorMessage(DELETE_CURRENT_NOTE_COMMAND_ERROR_MESSAGE);
 		return;
 	}
 

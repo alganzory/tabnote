@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { addNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
+import { ADD_NOTE_COMMAND_ERROR_MESSAGE } from "../constants";
 
 export default async function (
 	context: vscode.ExtensionContext,
@@ -8,9 +9,7 @@ export default async function (
 ) {
 	// Check if there is an active text editor
 	if (!vscode.window.activeTextEditor) {
-		vscode.window.showErrorMessage(
-			"Cannot add a note. No active text editor found."
-		);
+		vscode.window.showErrorMessage(ADD_NOTE_COMMAND_ERROR_MESSAGE);
 		return;
 	}
 
