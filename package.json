@@ -18,7 +18,8 @@
 			{
 				"command": "extension.addNote",
 				"title": "Add Note",
-				"icon": "media/icons/add.svg"
+				"icon": "media/icons/add.svg",
+				"enablement": "resourcePath not in extension.existingNotes"
 			},
 			{
 				"command": "extension.viewEditNoteItem",
@@ -29,7 +30,8 @@
 			{
 				"command": "extension.viewEditCurrentNote",
 				"title": "View/Edit this Note",
-				"icon": "media/icons/edit.svg"
+				"icon": "media/icons/edit.svg",
+				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.deleteNoteItem",
@@ -40,7 +42,8 @@
 			{
 				"command": "extension.deleteCurrentNote",
 				"title": "Delete this Note",
-				"icon": "media/icons/delete.svg"
+				"icon": "media/icons/delete.svg",
+				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.refreshNotes",
