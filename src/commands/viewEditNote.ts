@@ -2,7 +2,14 @@ import * as vscode from "vscode";
 import { getNotes, editNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
 import { NoteItem } from "../NoteItem";
-import { VIEW_EDIT_CURRENT_NOTE_COMMAND_ERROR_MESSAGE, VIEW_EDIT_NOTE_INPUT_DEFAULT_PLACEHOLDER, VIEW_EDIT_NOTE_INPUT_DEFAULT_PROMPT, VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE, VIEW_EDIT_NOTE_ITEM_INPUT_PLACEHOLDER, VIEW_EDIT_NOTE_ITEM_INPUT_PROMPT } from "../constants";
+import {
+	VIEW_EDIT_CURRENT_NOTE_COMMAND_ERROR_MESSAGE,
+	VIEW_EDIT_NOTE_INPUT_DEFAULT_PLACEHOLDER,
+	VIEW_EDIT_NOTE_INPUT_DEFAULT_PROMPT,
+	VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE,
+	VIEW_EDIT_NOTE_ITEM_INPUT_PLACEHOLDER,
+	VIEW_EDIT_NOTE_ITEM_INPUT_PROMPT,
+} from "../constants";
 
 export async function viewEditCurrentNote(
 	context: vscode.ExtensionContext,
@@ -20,10 +27,6 @@ export async function viewEditCurrentNote(
 	let notes = getNotes(context);
 	let existingNote = notes[vscode.window.activeTextEditor.document.fileName];
 
-	if (!existingNote || existingNote === "") {
-		return;
-	}
-
 	await viewEditNoteHelper(
 		existingNote,
 		context,
@@ -40,10 +43,6 @@ export async function viewEditNoteItemCommand(
 	// read the notes
 	let notes = getNotes(context);
 	let existingNote = notes[noteItem.fileName];
-
-	if (!existingNote || existingNote === "") {
-		return;
-	}
 
 	await viewEditNoteHelper(
 		existingNote,
