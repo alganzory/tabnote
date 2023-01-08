@@ -19,7 +19,7 @@ export const MEDIA_ICONS_TAB_PATH = path.join(
 );
 export const NOTE_ITEM_ICON = vscode.Uri.file(MEDIA_ICONS_TAB_PATH);
 export const NOTE_ITEM_TOOLTIP = (fileName: string, note: string) =>
-	`${fileName}\n=====\n${note}`;
+	new vscode.MarkdownString(`${note}\n\n\`${fileName}\``);
 export const NOTE_ITEM_DESCRIPTION = (note: string) => `${note}`;
 export const NOTE_ITEM_COMMAND = (fileName: string) => ({
 	id: "vscode.open",
