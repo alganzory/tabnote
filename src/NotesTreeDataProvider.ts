@@ -36,12 +36,7 @@ export class NotesTreeDataProvider
 	}
 
 	private getShorterFileName(fileName: string): string {
-		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-		const workspaceFolderPath = workspaceFolder?.uri.fsPath;
-		const relativePath = fileName.replace(
-			workspaceFolderPath!,
-			NOTE_ITEM_SHORTER_NAME_PREFIX
-		);
+		const relativePath = vscode.workspace.asRelativePath(fileName);
 		return relativePath;
 	}
 
