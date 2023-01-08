@@ -55,8 +55,11 @@ export const VIEW_EDIT_NOTE_INPUT_DEFAULT_PROMPT =
 	"View/Edit note for this tab";
 export const VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE = "";
 
+export const STATUS_BAR_NAME = "TabNote";
 export const STATUS_BAR_MAX_LENGTH = 20;
 export const STATUS_BAR_FORMAT = (note: string) =>
 	`$(notebook)TabNote${note ? ": " + note : ""}`;
+export const STATUS_BAR_TOOLTIP = (note: string) =>
+	new vscode.MarkdownString(`${note}\n\n\ ***Click to view/edit note***`);
 
 export const EXISTING_NOTES_CONTEXT_KEY = "extension.existingNotes";
