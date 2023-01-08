@@ -49,6 +49,12 @@
 				"command": "extension.refreshNotes",
 				"title": "Refresh Notes",
 				"icon": "media/icons/refresh.svg"
+			},
+			{
+				"command": "extension.searchNotes",
+				"title": "Search Notes",
+				"icon": "media/icons/search.svg",
+				"enablement": "extension.existingNotesLength > 0"
 			}
 		],
 		"views": {
@@ -74,6 +80,11 @@
 			"view/title": [
 				{
 					"command": "extension.refreshNotes",
+					"when": "view == notesTreeView",
+					"group": "navigation"
+				},
+				{
+					"command": "extension.searchNotes",
 					"when": "view == notesTreeView",
 					"group": "navigation"
 				}

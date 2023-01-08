@@ -11,8 +11,11 @@ import {
 	VIEW_EDIT_CURRENT_NOTE_COMMAND_ID,
 	VIEW_EDIT_NOTE_ITEM_COMMAND_ID,
 	EXISTING_NOTES_CONTEXT_KEY,
+	SEARCH_NOTES_COMMAND_ID,
+	EXISTING_NOTES_LENGTH_CONTEXT_KEY,
 } from "../constants";
 import { getNotes } from "../utils/notesOperations";
+import { searchNotesCommand } from "./searchNotes";
 
 export default function getRegisteredCommands(
 	context: vscode.ExtensionContext,
@@ -22,10 +25,17 @@ export default function getRegisteredCommands(
 		// refresh the notes in the view
 		refreshView();
 		// refresh the notes in the custom context
+
+		const notes = getNotes(context);
 		vscode.commands.executeCommand(
 			"setContext", // vscode internal command
 			EXISTING_NOTES_CONTEXT_KEY,
-			Object.keys(getNotes(context))
+			Object.keys(notes)
+		);
+		vscode.commands.executeCommand(
+			"setContext", // vscode internal command
+			EXISTING_NOTES_LENGTH_CONTEXT_KEY,
+			Object.keys(notes).length
 		);
 	}
 
@@ -55,6 +65,10 @@ export default function getRegisteredCommands(
 				await deleteNoteItemCommand(context, refreshNotes, noteItem)
 		),
 
+		vscode.commands.registerCommand(
+			SEARCH_NOTES_COMMAND_ID,
+			async () => await searchNotesCommand(context)
+		),
 		vscode.commands.registerCommand(REFRESH_NOTES_COMMAND_ID, refreshNotes),
 	];
 }

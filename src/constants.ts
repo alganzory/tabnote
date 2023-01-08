@@ -43,6 +43,7 @@ export const VIEW_EDIT_CURRENT_NOTE_COMMAND_ID =
 export const DELETE_CURRENT_NOTE_COMMAND_ID = "extension.deleteCurrentNote";
 export const VIEW_EDIT_NOTE_ITEM_COMMAND_ID = "extension.viewEditNoteItem";
 export const DELETE_NOTE_ITEM_COMMAND_ID = "extension.deleteNoteItem";
+export const SEARCH_NOTES_COMMAND_ID = "extension.searchNotes";
 export const REFRESH_NOTES_COMMAND_ID = "extension.refreshNotes";
 
 export const VIEW_EDIT_NOTE_INPUT_DEFAULT_PLACEHOLDER =
@@ -63,3 +64,15 @@ export const STATUS_BAR_TOOLTIP = (note: string) =>
 	new vscode.MarkdownString(`${note}\n\n\ ***Click to view/edit note***`);
 
 export const EXISTING_NOTES_CONTEXT_KEY = "extension.existingNotes";
+export const EXISTING_NOTES_LENGTH_CONTEXT_KEY =
+	"extension.existingNotesLength";
+export const SEARCH_NOTES_QUICKPICK_TITLE = "Search Notes";
+export const SEARCH_NOTES_QUICKPICK_PLACEHOLDER = "Enter search term";
+export const SEARCH_NOTES_NO_NOTES_MESSAGE = "No notes found";
+export const SEARCH_NOTES_QUICKPICK_ITEM = (
+	fileName: string,
+	note: string
+) => ({
+	label: `$(note) ${note}`,
+	detail: vscode.workspace.asRelativePath(fileName),
+});
