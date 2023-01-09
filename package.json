@@ -3,14 +3,25 @@
 	"displayName": "TabNote",
 	"description": "Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.",
 	"version": "0.0.1",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alganzory/tabnote"
+	},
+	"bugs": {
+		"url": "https://github.com/alganzory/tabnote/issues"
+	},
 	"engines": {
 		"vscode": "^1.74.0"
 	},
+	"icon": "media/icons/icon.png",
 	"categories": [
-		"Other"
+		"Other",
+		"Notebooks",
+		"Debuggers"
 	],
 	"activationEvents": [
-		"*"
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
