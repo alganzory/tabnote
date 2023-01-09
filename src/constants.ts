@@ -64,7 +64,7 @@ export const STATUS_BAR_MAX_LENGTH = 20;
 export const STATUS_BAR_FORMAT = (note: string) =>
 	`$(notebook) ${note ?  note : "Add a note"}`;
 export const STATUS_BAR_TOOLTIP = (note: string) =>
-	new vscode.MarkdownString(`${note}\n\n\ ***Click to view/edit note***`);
+	new vscode.MarkdownString(note? `${note}\n\n\ ***Click to view/edit note***`: `***Click to add a note***`);
 
 export const EXISTING_NOTES_CONTEXT_KEY = "extension.existingNotes";
 export const EXISTING_NOTES_LENGTH_CONTEXT_KEY =
