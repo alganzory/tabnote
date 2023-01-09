@@ -1,7 +1,11 @@
 import * as vscode from "vscode";
 import { addNote } from "../utils/notesOperations";
 import updateStatusBar from "../utils/statusBar";
-import { ADD_NOTE_COMMAND_ERROR_MESSAGE } from "../constants";
+import {
+	ADD_NOTE_COMMAND_ERROR_MESSAGE,
+	ADD_NOTE_INPUT_PLACEHOLDER,
+	ADD_NOTE_INPUT_PROMPT,
+} from "../constants";
 
 export default async function (
 	context: vscode.ExtensionContext,
@@ -14,18 +18,23 @@ export default async function (
 	}
 
 	// Show an input box to get the note from the user
-	vscode.window.showInputBox().then(async function (note) {
-		// add the note to the notes object
-		await addNote(
-			context,
-			vscode.window.activeTextEditor!.document.fileName,
-			note!
-		);
+	vscode.window
+		.showInputBox({
+			prompt: ADD_NOTE_INPUT_PROMPT,
+			placeHolder: ADD_NOTE_INPUT_PLACEHOLDER,
+		})
+		.then(async function (note) {
+			// add the note to the notes object
+			await addNote(
+				context,
+				vscode.window.activeTextEditor!.document.fileName,
+				note!
+			);
 
-		// Update the status bar with the new note
-		updateStatusBar(note);
+			// Update the status bar with the new note
+			updateStatusBar(note, context);
 
-		// Refresh the view
-		refreshView();
-	});
+			// Refresh the view
+			refreshView();
+		});
 }

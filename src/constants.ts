@@ -38,6 +38,9 @@ export const VIEW_EDIT_CURRENT_NOTE_COMMAND_ERROR_MESSAGE =
 	"Cannot view/edit note. No active text editor found.";
 
 export const ADD_NOTE_COMMAND_ID = "extension.addNote";
+export const ADD_NOTE_INPUT_PLACEHOLDER = "Enter a note for this tab";
+export const ADD_NOTE_INPUT_PROMPT = "Add note for this tab";
+
 export const VIEW_EDIT_CURRENT_NOTE_COMMAND_ID =
 	"extension.viewEditCurrentNote";
 export const DELETE_CURRENT_NOTE_COMMAND_ID = "extension.deleteCurrentNote";
@@ -59,7 +62,7 @@ export const VIEW_EDIT_NOTE_INPUT_DEFAULT_VALUE = "";
 export const STATUS_BAR_NAME = "TabNote";
 export const STATUS_BAR_MAX_LENGTH = 20;
 export const STATUS_BAR_FORMAT = (note: string) =>
-	`$(notebook)TabNote${note ? ": " + note : ""}`;
+	`$(notebook) ${note ?  note : "Add a note"}`;
 export const STATUS_BAR_TOOLTIP = (note: string) =>
 	new vscode.MarkdownString(`${note}\n\n\ ***Click to view/edit note***`);
 

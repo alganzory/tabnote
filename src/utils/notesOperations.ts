@@ -7,6 +7,14 @@ export function getNotes(context: vscode.ExtensionContext): {
 	return context.workspaceState.get(NOTES_KEY, {});
 }
 
+export function getNoteByFileName(
+	context: vscode.ExtensionContext,
+	fileName: string
+) {
+	const notes = getNotes(context);
+	return notes[fileName] || "";
+}
+
 export async function setNotes(
 	context: vscode.ExtensionContext,
 	notes: { [key: string]: string }

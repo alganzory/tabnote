@@ -7,12 +7,13 @@ export default function (context: vscode.ExtensionContext) {
 		const notes = getNotes(context);
 		if (vscode.window.activeTextEditor.document.fileName in notes) {
 			updateStatusBar(
-				notes[vscode.window.activeTextEditor.document.fileName]
+				notes[vscode.window.activeTextEditor.document.fileName],
+				context
 			);
 		} else {
-			updateStatusBar();
+			updateStatusBar("", context);
 		}
 	} else {
-		updateStatusBar();
+		updateStatusBar("", context);
 	}
 }

@@ -3,57 +3,69 @@
 	"displayName": "TabNote",
 	"description": "Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.",
 	"version": "0.0.1",
+	"license": "MIT",
+	"publisher": "alganzory",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alganzory/tabnote"
+	},
+	"bugs": {
+		"url": "https://github.com/alganzory/tabnote/issues"
+	},
 	"engines": {
 		"vscode": "^1.74.0"
 	},
+	"icon": "media/icons/icon.png",
 	"categories": [
-		"Other"
+		"Other",
+		"Notebooks",
+		"Debuggers"
 	],
 	"activationEvents": [
-		"*"
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.addNote",
-				"title": "Add Note",
-				"icon": "media/icons/add.svg",
+				"title": "TabNote: Add Note",
+				"icon": "$(add)",
 				"enablement": "resourcePath not in extension.existingNotes"
 			},
 			{
 				"command": "extension.viewEditNoteItem",
 				"title": "View/Edit Note",
-				"icon": "media/icons/edit.svg",
+				"icon": "$(pencil)",
 				"enablement": "view == notesTreeView"
 			},
 			{
 				"command": "extension.viewEditCurrentNote",
-				"title": "View/Edit this Note",
-				"icon": "media/icons/edit.svg",
+				"title": "TabNote: View/Edit this Note",
+				"icon": "$(pencil)",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.deleteNoteItem",
 				"title": "Delete Note",
-				"icon": "media/icons/delete.svg",
+				"icon": "$(remove)",
 				"enablement": "view == notesTreeView"
 			},
 			{
 				"command": "extension.deleteCurrentNote",
-				"title": "Delete this Note",
-				"icon": "media/icons/delete.svg",
+				"title": "TabNote: Delete this Note",
+				"icon": "$(remove)",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.refreshNotes",
 				"title": "Refresh Notes",
-				"icon": "media/icons/refresh.svg"
+				"icon": "$(refresh)"
 			},
 			{
 				"command": "extension.searchNotes",
-				"title": "Search Notes",
-				"icon": "media/icons/search.svg",
+				"title": "TabNote: Search Notes",
+				"icon": "$(search)",
 				"enablement": "extension.existingNotesLength > 0"
 			}
 		],
@@ -62,7 +74,7 @@
 				{
 					"id": "notesTreeView",
 					"name": "Notes",
-					"icon": "media/icons/logo.svg",
+					"icon": "media/icons/activityBarIcon.png",
 					"contextualTitle": "Notes"
 				}
 			]
@@ -79,7 +91,7 @@
 				{
 					"id": "notesTreeContainer",
 					"title": "TabNote",
-					"icon": "media/icons/logo.svg"
+					"icon": "media/icons/activityBarIcon.png"
 				}
 			]
 		},
