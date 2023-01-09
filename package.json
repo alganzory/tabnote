@@ -67,6 +67,13 @@
 				}
 			]
 		},
+		"viewsWelcome": [
+			{
+				"view": "notesTreeView",
+				"contents": "Your notes will appear here. Add a note through the command palette by searching for 'TabNote: Add Note' or by clicking the TabNote icon in the status bar.",
+				"when": "extension.existingNotesLength == 0"
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
