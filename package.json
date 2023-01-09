@@ -17,7 +17,7 @@
 		"commands": [
 			{
 				"command": "extension.addNote",
-				"title": "Add Note",
+				"title": "TabNote: Add Note",
 				"icon": "media/icons/add.svg",
 				"enablement": "resourcePath not in extension.existingNotes"
 			},
@@ -29,7 +29,7 @@
 			},
 			{
 				"command": "extension.viewEditCurrentNote",
-				"title": "View/Edit this Note",
+				"title": "TabNote: View/Edit this Note",
 				"icon": "media/icons/edit.svg",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
@@ -41,7 +41,7 @@
 			},
 			{
 				"command": "extension.deleteCurrentNote",
-				"title": "Delete this Note",
+				"title": "TabNote: Delete this Note",
 				"icon": "media/icons/delete.svg",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
@@ -52,7 +52,7 @@
 			},
 			{
 				"command": "extension.searchNotes",
-				"title": "Search Notes",
+				"title": "TabNote: Search Notes",
 				"icon": "media/icons/search.svg",
 				"enablement": "extension.existingNotesLength > 0"
 			}
