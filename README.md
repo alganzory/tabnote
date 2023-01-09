@@ -1,65 +1,43 @@
-# tabnote README
+# TabNote - The ultimate way to leave notes on tabs and files
 
-This is the README for your extension "tabnote". After writing up a brief description, we recommend including the following sections.
+Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.
 
-## Features
+The main motivation behind this extension is to help you leave notes on a tab/file, this could be useful to remember why you opened a file (when you have too many open), or to leave a note to yourself about a file.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Key Features
 
-For example if there is an image subfolder under your extension project workspace:
+-   Quickly add a note to any file or tab
+-   View preview of the note for current tab in the status bar at the bottom of the window
+-   View and edit existing notes from the side bar
+-   Search for a specific note through a quick pick menu
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## How to use
+
+-   To add a note for the current tab, use the command `TabNote: Add Note` or click the `Add Note` in the status bar
+-   To view and edit existing notes, use the command `TabNote: View/Edit Note` or click the status bar button to view/edit the note for the current tab
+-   To delete a note for the current tab, use the command `TabNote: Delete Note`
+-   You can view and manage all notes by clicking the extension icon in the side bar
+-   You can search for a note through the command `TabNote: Search Notes` or by clicking the search button in the status bar
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+-   Visual Studio Code v1.50.0 or higher
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This extension does not add any settings to Visual Studio Code yet.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+None at the moment.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Initial release of TabNote
 
-Initial release of ...
+### 0.0.2 (upcoming)
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
