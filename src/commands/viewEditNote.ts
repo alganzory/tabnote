@@ -87,7 +87,7 @@ async function viewEditNoteHelper(
 					vscode.window.activeTextEditor.document.fileName ===
 					fileName
 				) {
-					updateStatusBar(note);
+					updateStatusBar(note, context);
 				}
 			}
 

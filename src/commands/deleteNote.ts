@@ -39,7 +39,7 @@ async function deleteCommandHelper(
 
 	// Update the status bar with the new note if it's the active tab
 	if (vscode.window.activeTextEditor?.document.fileName === fileName) {
-		updateStatusBar();
+		updateStatusBar("", context);
 	}
 
 	// Refresh the view
