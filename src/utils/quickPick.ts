@@ -23,10 +23,7 @@ export async function showQuickPick(searchResults: [string, string][]) {
 	}
 
 	// get the root path of the workspace, so we can open the file from the relative path
-	const rootPath = searchResults[0][0].replace(
-		vscode.workspace.asRelativePath(searchResults[0][0]),
-		""
-	);
+	const rootPath = vscode?.workspace?.workspaceFolders?.[0].uri.fsPath;
 
 	quickPick.title = SEARCH_NOTES_QUICKPICK_TITLE;
 	quickPick.placeholder = SEARCH_NOTES_QUICKPICK_PLACEHOLDER;
@@ -45,6 +42,11 @@ export async function showQuickPick(searchResults: [string, string][]) {
 			return;
 		}
 
+		if (!rootPath) {
+			quickPick.hide();
+			quickPick.dispose();
+			return;
+		}
 		// execute command to open the note
 		const fullPathFromRelative = path.join(rootPath, selectedNote.detail);
 		await vscode.commands.executeCommand(
