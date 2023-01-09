@@ -4,6 +4,7 @@
 	"description": "Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.",
 	"version": "0.0.1",
 	"license": "MIT",
+	"publisher": "alganzory",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/alganzory/tabnote"
