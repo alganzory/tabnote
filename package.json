@@ -18,42 +18,42 @@
 			{
 				"command": "extension.addNote",
 				"title": "TabNote: Add Note",
-				"icon": "media/icons/add.svg",
+				"icon": "$(add)",
 				"enablement": "resourcePath not in extension.existingNotes"
 			},
 			{
 				"command": "extension.viewEditNoteItem",
 				"title": "View/Edit Note",
-				"icon": "media/icons/edit.svg",
+				"icon": "$(pencil)",
 				"enablement": "view == notesTreeView"
 			},
 			{
 				"command": "extension.viewEditCurrentNote",
 				"title": "TabNote: View/Edit this Note",
-				"icon": "media/icons/edit.svg",
+				"icon": "$(pencil)",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.deleteNoteItem",
 				"title": "Delete Note",
-				"icon": "media/icons/delete.svg",
+				"icon": "$(remove)",
 				"enablement": "view == notesTreeView"
 			},
 			{
 				"command": "extension.deleteCurrentNote",
 				"title": "TabNote: Delete this Note",
-				"icon": "media/icons/delete.svg",
+				"icon": "$(remove)",
 				"enablement": "resourcePath in extension.existingNotes"
 			},
 			{
 				"command": "extension.refreshNotes",
 				"title": "Refresh Notes",
-				"icon": "media/icons/refresh.svg"
+				"icon": "$(refresh)"
 			},
 			{
 				"command": "extension.searchNotes",
 				"title": "TabNote: Search Notes",
-				"icon": "media/icons/search.svg",
+				"icon": "$(search)",
 				"enablement": "extension.existingNotesLength > 0"
 			}
 		],
@@ -62,7 +62,7 @@
 				{
 					"id": "notesTreeView",
 					"name": "Notes",
-					"icon": "media/icons/logo.svg",
+					"icon": "media/icons/activityBarIcon.png",
 					"contextualTitle": "Notes"
 				}
 			]
@@ -79,7 +79,7 @@
 				{
 					"id": "notesTreeContainer",
 					"title": "TabNote",
-					"icon": "media/icons/logo.svg"
+					"icon": "media/icons/activityBarIcon.png"
 				}
 			]
 		},
