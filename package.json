@@ -2,7 +2,7 @@
 	"name": "tabnote",
 	"displayName": "TabNote",
 	"description": "Leave a note on tabs or files to help you remember why they were opened/relevant/whatever the heck you may want to remember.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license": "MIT",
 	"publisher": "alganzory",
 	"repository": {
@@ -20,6 +20,20 @@
 		"Other",
 		"Notebooks",
 		"Debuggers"
+	],
+	"keywords": [
+		"note",
+		"tab",
+		"tab note",
+		"file note",
+		"file todo",
+		"tab todo",
+		"todo",
+		"productivity",
+		"notebook",
+		"todo notes",
+		"line notes",
+		"specific file notes"
 	],
 	"activationEvents": [
 		"onStartupFinished"
