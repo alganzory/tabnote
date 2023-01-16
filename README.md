@@ -10,8 +10,17 @@ Notes persist across sessions, so you can leave a note on a file and come back t
 
 -   Quickly add a note to any file or tab
 -   View preview of the note for current tab in the status bar at the bottom of the **window**
--   View and edit existing notes from the side bar (activity bar)
--   Search for a specific note through a quick pick menu
+
+![Using Status Bar](media/gifs/statusBar.gif)
+
+-   View notes preview through sidebar (activity bar)
+-   Manage notes (add, edit, delete), and search for a specific note through sidebar (activity bar)
+
+![Using Activity Bar](media/gifs/activityBar.gif)
+
+-   Manage notes (add, edit, delete), and search for a specific note through a quick pick menu
+
+![Using Command Palette](media/gifs/commandPalette.gif)
 
 ## How to use
 
@@ -22,10 +31,6 @@ Notes persist across sessions, so you can leave a note on a file and come back t
 -   You can search for a note through the command `TabNote: Search Notes` or by clicking the search button in the status bar
 
 In short, you can manage the notes in the workspace using status bar, activity bar or the command pallete
-
-![Using Status Bar](media/gifs/statusBar.gif)
-![Using Activity Bar](media/gifs/activityBar.gif)
-![Using Command Palette](media/gifs/commandPalette.gif)
 
 ## Requirements
 
@@ -45,6 +50,7 @@ None at the moment.
 
 Initial release of TabNote
 
-### 0.0.2 (upcoming)
+### 0.0.2
 
-Fix reported issues
+-   Add keywords to package.json
+-   Update gifs in README.md
